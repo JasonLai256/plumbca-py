@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from plumbca import Plumbca
+from pyplumbca import Plumbca
 
 
 def test_client_basic():
@@ -11,6 +11,7 @@ def test_client_basic():
     rv = p.wping()
     assert rv == 'WORKER OK'
 
+    # 测试 pyplumbca.store 方法
     coll = 'test_minute'
     taglist = ['google', 'facebook', 'apple']
     val = {'tech': 1, 'info': 2, 'china': 10}
@@ -21,15 +22,18 @@ def test_client_basic():
                 rv = p.store(coll, ts, tag, val)
                 assert rv == 'Store OK'
 
+    # 测试 pyplumbca.dump 方法
     rv = p.dump()
     assert rv == 'DUMP OK'
 
+    # 测试 pyplumbca.query 方法
     for tag in taglist:
         rv = p.query(coll, 100, 300, tag)
         assert len(rv) == 128
         assert rv[0][0] == '128:{}'.format(tag)
         assert rv[0][1] == {'tech': 5, 'info': 10, 'china': 50}
 
+    # 测试 pyplumbca.fetch 方法
     rv = p.fetch(coll, tagging=taglist[0])
     assert len(rv) == 128
     for i, r in enumerate(rv):
