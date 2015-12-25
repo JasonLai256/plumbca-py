@@ -2,13 +2,12 @@
 
 from setuptools import setup, find_packages
 
-from plumbca import __version__
+from pyplumbca import __version__
 
 setup(
     name='plumbca-py',
     version=__version__,
     install_requires=[
-        'pyzmq',
         'msgpack-python',
     ],
     packages=find_packages(exclude=["tests"]),
@@ -17,7 +16,7 @@ setup(
     author_email='jasonlai256@gmail.com',
     description='.',
     classifiers=[
-        'Development Status :: 4 - beta',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: 3.3',
